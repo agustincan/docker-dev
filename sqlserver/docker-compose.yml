@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  sql1:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql1
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin1234-
+    restart: always
+    ports:
+      - '1433:1433'
+    volumes:
+      - c:/db/sqlserver/data:/var/opt/mssql/data
+      - c:/db/sqlserver/log:/var/opt/mssql/log
+      - c:/db/sqlserver/secrets:/var/opt/mssql/secrets

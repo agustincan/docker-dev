@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  sql1:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sql1
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin1234-
+    restart: always
+    ports:
+      - '1433:1433'
+    volumes:
+      - c:/db/sqlserver/data:/var/opt/mssql/data
+      - c:/db/sqlserver/log:/var/opt/mssql/log
+      - c:/db/sqlserver/secrets:/var/opt/mssql/secrets
+  postgres1:
+    image: postgres
+    container_name: pg2
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=pgdb
+    ports:
+      - '5444:5432'
+    volumes:
+      - c:/db/postgresql:/var/lib/postgresql
